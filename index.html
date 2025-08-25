@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muftia Salsabila - Personal Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-pink: #FF6B81;
+            --secondary-blue: #81C7D4;
+            --light-blue: #E6F7FF;
+            --dark-blue: #2C3E50;
+            --light-grey: #ECF0F1;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-blue);
+        }
+
+        /* Custom Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fillProgress {
+            from { width: 0; }
+            to { width: var(--progress-width); }
+        }
+        .progress-bar-fill {
+            background-color: var(--secondary-blue);
+            height: 100%;
+            width: 0;
+            border-radius: 9999px;
+            animation: fillProgress 1.5s ease-out forwards;
+        }
+
+        .hero-section {
+            background-color: var(--light-blue);
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-bar-container {
+            width: 100%;
+            max-width: 800px;
+        }
+        .skill-bar p {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .progress-bar {
+            background-color: var(--light-grey);
+            height: 15px;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        /* Dark Mode */
+        .dark body {
+            background-color: #121212;
+            color: #E0E0E0;
+        }
+        .dark .navbar {
+            background-color: #1a1a1a;
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
+        }
+        .dark .navbar .logo, .dark .navbar .nav-links a {
+            color: #E0E0E0;
+        }
+        .dark .hero-section {
+            background-color: #1a1a1a;
+        }
+        .dark .hero-section h1, .dark .hero-section .subtitle, .dark .btn.primary {
+            color: #E0E0E0;
+        }
+        .dark .btn.secondary {
+            background-color: #E0E0E0;
+            color: var(--dark-blue);
+            border-color: #E0E0E0;
+        }
+        .dark .project-card {
+            background-color: #2a2a2a;
+            color: #E0E0E0;
+        }
+        .dark .project-card p, .dark .social-icons a, .dark .contact-content p, .dark .contact-form input, .dark .contact-form textarea, .dark .blog-card h3 {
+            color: #B0B0B0;
+        }
+        .dark .blog-card {
+            background-color: #2a2a2a;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+        }
+        .dark .blog-card:hover {
+            box-shadow: 0 8px 15px rgba(255, 255, 255, 0.1);
+        }
+        .dark .contact-form input, .dark .contact-form textarea {
+            background-color: #333;
+            border-color: #444;
+        }
+        .dark .contact-form button {
+            background-color: #E0E0E0;
+            color: #121212;
+        }
+        .dark .social-icons a:hover {
+            color: var(--primary-pink);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 transition-colors duration-500">
+
+    <!-- Navigasi -->
+    <nav class="fixed w-full top-0 z-50 bg-white shadow-sm transition duration-300 ease-in-out">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="#" class="text-2xl font-bold text-dark-blue">Muftia.</a>
+            <div class="hidden md:flex items-center space-x-6 lg:space-x-10">
+                <a href="#hero" class="text-gray-600 hover:text-primary-pink transition duration-300">Beranda</a>
+                <a href="#about" class="text-gray-600 hover:text-primary-pink transition duration-300">Tentang</a>
+                <a href="#portfolio" class="text-gray-600 hover:text-primary-pink transition duration-300">Portofolio</a>
+                <a href="#writings" class="text-gray-600 hover:text-primary-pink transition duration-300">Tulisan</a>
+                <a href="#contact" class="text-gray-600 hover:text-primary-pink transition duration-300">Kontak</a>
+                <button id="theme-toggle" class="p-2 rounded-full text-gray-600 hover:text-dark-blue transition-all duration-300 focus:outline-none">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section flex flex-col items-center justify-center min-h-screen text-center pt-20 transition-colors duration-500">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-dark-blue mb-4 animate-fade-in-up">Hi, I'm Muftia Salsabila 👋</h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 animate-fade-in-up animate-delay-200">A passionate profesional kesehatan & bisnis based in Medan</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 animate-fade-in-up animate-delay-400">
+                <a href="#portfolio" class="bg-dark-blue text-white px-8 py-3 rounded-full font-semibold hover:bg-primary-pink transition duration-300 shadow-md">Lihat Proyek</a>
+                <a href="https://wa.me/6281234567890" target="_blank" class="bg-white text-dark-blue px-8 py-3 rounded-full font-semibold border-2 border-dark-blue hover:bg-dark-blue hover:text-white transition duration-300 shadow-md">Hubungi Saya</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Saya -->
+    <section id="about" class="py-20 md:py-24 transition-colors duration-500">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Tentang Saya</h2>
+            <div class="flex flex-col items-center gap-10 md:flex-row md:gap-20 md:items-start">
+                <div class="flex-shrink-0">
+                    <img src="https://placehold.co/250x250/81C7D4/E6F7FF?text=Foto+Anda" alt="Foto Muftia Salsabila" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover shadow-lg transform transition-all duration-300 hover:scale-105">
+                </div>
+                <div class="text-center md:text-left md:flex-grow">
+                    <p class="mb-6 text-gray-600">Halo, saya Muftia Salsabila, seorang profesional yang bersemangat dalam bidang kesehatan dan bisnis, dengan ketertarikan mendalam pada seni pembuatan kue. Saya percaya bahwa setiap detail kecil memiliki makna besar, baik dalam memberikan layanan terbaik di dunia kesehatan, membangun strategi bisnis yang efektif, maupun menciptakan kue yang tidak hanya lezat tetapi juga indah secara visual.</p>
+                    <p class="mb-6 text-gray-600">Melalui perjalanan saya, saya telah mengembangkan keahlian yang beragam, menggabungkan pengetahuan teknis dengan kreativitas untuk menghasilkan solusi yang inovatif dan berkesan. Hobi saya di bidang kue mengajarkan saya kesabaran dan ketelitian, dua nilai yang saya terapkan dalam setiap aspek pekerjaan saya. Saya selalu mencari peluang untuk belajar dan berkembang, serta berkolaborasi dengan individu dan tim yang memiliki visi yang sama.</p>
+                    <div class="skill-bar-container mt-8">
+                        <div class="skill-bar mb-4">
+                            <p>Kesehatan & Perawatan Pasien</p>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="--progress-width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar mb-4">
+                            <p>Manajemen Bisnis</p>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="--progress-width: 70%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <p>Seni Roti & Kue</p>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="--progress-width: 95%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Timeline Section -->
+            <div class="mt-20">
+                <h3 class="text-2xl md:text-3xl font-bold text-center mb-10">Pendidikan & Pengalaman</h3>
+                <div class="relative max-w-4xl mx-auto">
+                    <!-- Timeline Line -->
+                    <div class="absolute inset-y-0 left-1/2 -ml-0.5 w-1 bg-gray-200 z-0 hidden md:block"></div>
+                    
+                    <!-- Timeline Items -->
+                    <div class="timeline-item flex flex-col md:flex-row items-center mb-8 md:mb-16">
+                        <div class="flex-shrink-0 md:w-1/2 md:pr-10 md:text-right">
+                            <div class="rounded-full w-12 h-12 bg-secondary-blue flex items-center justify-center text-white text-lg font-bold">2018</div>
+                            <h4 class="font-semibold text-lg mt-2">Sarjana Kesehatan</h4>
+                            <p class="text-sm text-gray-600">Universitas Negeri Medan</p>
+                        </div>
+                        <div class="md:w-1/2 md:pl-10 text-center md:text-left mt-4 md:mt-0">
+                            <p class="text-gray-600">Lulus dengan predikat Cum Laude dari program studi Kesehatan Masyarakat, fokus pada manajemen dan kebijakan kesehatan.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item flex flex-col md:flex-row-reverse items-center mb-8 md:mb-16">
+                        <div class="flex-shrink-0 md:w-1/2 md:pl-10 md:text-left">
+                            <div class="rounded-full w-12 h-12 bg-primary-pink flex items-center justify-center text-white text-lg font-bold">2019</div>
+                            <h4 class="font-semibold text-lg mt-2">Spesialis Bisnis</h4>
+                            <p class="text-sm text-gray-600">Startup Konsultasi Bisnis</p>
+                        </div>
+                        <div class="md:w-1/2 md:pr-10 text-center md:text-right mt-4 md:mt-0">
+                            <p class="text-gray-600">Membantu bisnis rintisan (startup) dalam menyusun strategi pemasaran dan operasional untuk pertumbuhan berkelanjutan.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item flex flex-col md:flex-row items-center mb-8 md:mb-16">
+                        <div class="flex-shrink-0 md:w-1/2 md:pr-10 md:text-right">
+                            <div class="rounded-full w-12 h-12 bg-secondary-blue flex items-center justify-center text-white text-lg font-bold">2021</div>
+                            <h4 class="font-semibold text-lg mt-2">Wirausaha Kue</h4>
+                            <p class="text-sm text-gray-600">Muftia's Sweet Treats</p>
+                        </div>
+                        <div class="md:w-1/2 md:pl-10 text-center md:text-left mt-4 md:mt-0">
+                            <p class="text-gray-600">Membangun dan mengelola bisnis kue mandiri, berfokus pada desain minimalis dan bahan-bahan berkualitas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Portofolio -->
+    <section id="portfolio" class="bg-light-blue py-20 md:py-24 transition-colors duration-500">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Proyek & Portofolio</h2>
+            
+            <!-- Filter Buttons -->
+            <div class="flex justify-center flex-wrap gap-4 mb-10">
+                <button data-filter="all" class="filter-btn bg-dark-blue text-white px-6 py-2 rounded-full font-semibold transition-colors duration-300">Semua</button>
+                <button data-filter="kesehatan" class="filter-btn bg-white text-dark-blue px-6 py-2 rounded-full font-semibold border border-dark-blue hover:bg-dark-blue hover:text-white transition-colors duration-300">Kesehatan</button>
+                <button data-filter="bisnis" class="filter-btn bg-white text-dark-blue px-6 py-2 rounded-full font-semibold border border-dark-blue hover:bg-dark-blue hover:text-white transition-colors duration-300">Bisnis</button>
+                <button data-filter="kue" class="filter-btn bg-white text-dark-blue px-6 py-2 rounded-full font-semibold border border-dark-blue hover:bg-dark-blue hover:text-white transition-colors duration-300">Kue</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Proyek 1 -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300" data-category="kesehatan">
+                    <img src="https://placehold.co/400x250/FF6B81/E6F7FF?text=Proyek+1" alt="Thumbnail Proyek 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Kampanye Kesehatan Masyarakat</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Mengembangkan dan mengelola kampanye kesadaran kesehatan untuk komunitas lokal.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-secondary-blue text-dark-blue text-xs font-medium px-3 py-1 rounded-full">Kesehatan</span>
+                            <span class="bg-secondary-blue text-dark-blue text-xs font-medium px-3 py-1 rounded-full">Manajemen Proyek</span>
+                        </div>
+                        <a href="#" class="inline-block text-dark-blue border-2 border-dark-blue rounded-full px-6 py-2 font-semibold hover:bg-dark-blue hover:text-white transition duration-300">Lihat Studi Kasus</a>
+                    </div>
+                </div>
+                <!-- Proyek 2 -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300" data-category="bisnis">
+                    <img src="https://placehold.co/400x250/FF6B81/E6F7FF?text=Proyek+2" alt="Thumbnail Proyek 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Branding Usaha Kue</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Menciptakan identitas visual dan strategi pemasaran untuk bisnis kue rumahan.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-secondary-blue text-dark-blue text-xs font-medium px-3 py-1 rounded-full">Bisnis</span>
+                            <span class="bg-secondary-blue text-dark-blue text-xs font-medium px-3 py-1 rounded-full">Branding</span>
+                        </div>
+                        <a href="#" class="inline-block text-dark-blue border-2 border-dark-blue rounded-full px-6 py-2 font-semibold hover:bg-dark-blue hover:text-white transition duration-300">Lihat Studi Kasus</a>
+                    </div>
+                </div>
+                <!-- Proyek 3 -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300" data-category="kesehatan">
+                    <img src="https://placehold.co/400x250/FF6B81/E6F7FF?text=Proyek+3" alt="Thumbnail Proyek 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Sistem Manajemen Pasien</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Merancang alur kerja dan sistem untuk meningkatkan efisiensi layanan kesehatan.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-secondary-blue text-dark-blue text-xs font-medium px-3 py-1 rounded-full">Kesehatan</span>
+                            <span class="bg-secondary-blue text-dark-blue text-xs font-medium px-3 py-1 rounded-full">Teknologi</span>
+                        </div>
+                        <a href="#" class="inline-block text-dark-blue border-2 border-dark-blue rounded-full px-6 py-2 font-semibold hover:bg-dark-blue hover:text-white transition duration-300">Lihat Studi Kasus</a>
+                    </div>
+                </div>
+                <!-- Proyek 4 -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300" data-category="kue">
+                    <img src="https://placehold.co/400x250/FF6B81/E6F7FF?text=Proyek+4" alt="Thumbnail Proyek 4" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Workshop Kue Minimalis</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Menyelenggarakan workshop interaktif tentang seni membuat kue bergaya minimalis.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-secondary-blue text-dark-blue text-xs font-medium px-3 py-1 rounded-full">Edukasi</span>
+                            <span class="bg-secondary-blue text-dark-blue text-xs font-medium px-3 py-1 rounded-full">Kue</span>
+                        </div>
+                        <a href="#" class="inline-block text-dark-blue border-2 border-dark-blue rounded-full px-6 py-2 font-semibold hover:bg-dark-blue hover:text-white transition duration-300">Lihat Studi Kasus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog / Writings Section -->
+    <section id="writings" class="py-20 md:py-24 transition-colors duration-500">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Blog & Tulisan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <div class="blog-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Tips Manajemen Waktu untuk Profesional Muda</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Pelajari cara mengelola waktu dengan efektif untuk meningkatkan produktivitas dalam karier Anda.</p>
+                        <p class="text-xs text-gray-500">22 Juni 2024</p>
+                    </div>
+                </div>
+                <!-- Blog Post 2 -->
+                <div class="blog-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Inovasi di Bidang Kesehatan: Transformasi Digital</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Menganalisis bagaimana teknologi mengubah cara kita memberikan dan menerima layanan kesehatan.</p>
+                        <p class="text-xs text-gray-500">10 Mei 2024</p>
+                    </div>
+                </div>
+                <!-- Blog Post 3 -->
+                <div class="blog-card bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Seni Menghias Kue: Sentuhan Minimalis</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Panduan singkat untuk menciptakan desain kue yang elegan dan sederhana namun tetap menarik.</p>
+                        <p class="text-xs text-gray-500">18 April 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="contact" class="py-20 md:py-24 transition-colors duration-500">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Mari Berkolaborasi!</h2>
+            <p class="text-gray-600 mb-10 md:mb-12 max-w-2xl mx-auto">Apakah Anda memiliki ide proyek atau hanya ingin menyapa? Jangan ragu untuk menghubungi saya melalui formulir di bawah ini atau melalui media sosial.</p>
+
+            <form class="max-w-2xl mx-auto space-y-6" action="https://formspree.io/f/your-form-id" method="POST">
+                <input type="text" name="name" placeholder="Nama Anda" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-blue transition-all duration-300" required>
+                <input type="email" name="email" placeholder="Email Anda" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-blue transition-all duration-300" required>
+                <textarea name="message" rows="5" placeholder="Pesan Anda" class="w-full p-4 border border-gray-300 rounded-lg resize-y focus:outline-none focus:ring-2 focus:ring-secondary-blue transition-all duration-300" required></textarea>
+                <button type="submit" class="w-full bg-dark-blue text-white p-4 rounded-lg font-semibold hover:bg-primary-pink transition-all duration-300">Kirim Pesan</button>
+            </form>
+
+            <div class="flex justify-center space-x-6 mt-10">
+                <a href="https://www.linkedin.com/in/muftia" target="_blank" class="text-gray-500 hover:text-dark-blue transition-all duration-300 text-2xl"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/muftia" target="_blank" class="text-gray-500 hover:text-dark-blue transition-all duration-300 text-2xl"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/6281234567890" target="_blank" class="text-gray-500 hover:text-dark-blue transition-all duration-300 text-2xl"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:muftia@email.com" class="text-gray-500 hover:text-dark-blue transition-all duration-300 text-2xl"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-pink text-center py-6 transition-colors duration-500">
+        <p class="text-white text-sm">&copy; 2024 Muftia Salsabila. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Toggle Dark Mode
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            html.classList.add('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Skill bar animation on scroll
+        window.addEventListener('scroll', () => {
+            const aboutSection = document.getElementById('about');
+            const aboutPosition = aboutSection.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.5;
+
+            if (aboutPosition < screenPosition) {
+                const progresses = document.querySelectorAll('.progress-bar-fill');
+                progresses.forEach(progress => {
+                    progress.style.animation = 'none';
+                    progress.offsetHeight; /* trigger reflow */
+                    progress.style.animation = 'fillProgress 1.5s ease-out forwards';
+                });
+            }
+        });
+
+        // Portfolio filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                
+                // Update active button styling
+                filterBtns.forEach(b => b.classList.remove('bg-dark-blue', 'text-white'));
+                filterBtns.forEach(b => b.classList.add('bg-white', 'text-dark-blue', 'border', 'border-dark-blue'));
+                btn.classList.remove('bg-white', 'text-dark-blue', 'border', 'border-dark-blue');
+                btn.classList.add('bg-dark-blue', 'text-white');
+
+                // Show/hide projects
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Set initial filter for "Semua" button
+        document.querySelector('.filter-btn[data-filter="all"]').click();
+
+    </script>
+</body>
+</html>
